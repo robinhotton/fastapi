@@ -10,6 +10,10 @@ def get_all_professeurs():
 def get_professeur(professeur_id: str):
     return collection.find_one({"_id": ObjectId(professeur_id)}, {"_id": 0})
 
+def get_professeur_by_filtre_projection(filtre: dict, projection: dict):
+    professeurs = list(collection.find(filtre, projection))
+    return professeurs
+
 def create_professeur(professeur: dict):
     result = collection.insert_one(professeur)
     return {"_id": str(result.inserted_id)}
