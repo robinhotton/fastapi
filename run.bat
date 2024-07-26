@@ -1,3 +1,10 @@
-#!/bin/sh
+@echo off
+set DEFAULT_PORT=8000
 
-uvicorn app.main:app --reload
+pip install -r requirements.txt
+
+if "%1"=="" (
+    uvicorn app.main:app --port %DEFAULT_PORT% --reload
+) else (
+    uvicorn app.main:app --port %1 --reload
+)
